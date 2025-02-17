@@ -1,21 +1,74 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { useToast } from '../components/ui/use-toast';
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react'; // Icons for show/hide password
+import { Checkbox } from '../components/ui/checkbox'; // Import Checkbox component
 
 const Login = () => {
   const { userType } = useParams();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const [isSuccess, setIsSuccess] = useState(false); // Track success state
+  const [showPassword, setShowPassword] = useState(false); // Track password visibility
+  const [agreeToTerms, setAgreeToTerms] = useState(false); // Track if user agrees to terms
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Login Attempted",
-      description: `Attempted to login as ${userType}`,
-    });
+
+    // Check if the user has agreed to the terms and conditions
+    if (!agreeToTerms) {
+      toast({
+        title: "Terms Not Accepted",
+        description: "You must agree to the Terms and Conditions to proceed.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Simulate a successful login
+    try {
+      // Here, you would typically send the login credentials to your backend API
+      // For now, we'll simulate a successful response
+      setIsSuccess(true); // Set success state to true
+      toast({
+        title: "Login Successful",
+        description: `Welcome back, ${userType}!`,
+      });
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: "Invalid email or password. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
+
+  // If login is successful, display a success message
+  if (isSuccess) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="pt-20 pb-10">
+          <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-sm mt-8 text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              🎉 Login Successful!
+            </h1>
+            <p className="text-gray-600 mb-8">
+              Welcome back, {userType}! You can now proceed to the home page.
+            </p>
+            <Button onClick={() => navigate('/')}> {/* Redirect to index.tsx */}
+              Go to Home
+            </Button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   // Dynamic welcome message and description based on user type
   const getWelcomeMessage = () => {
@@ -79,12 +132,25 @@ const Login = () => {
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
               </label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                required
-              />
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"} // Toggle between text and password
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5 text-gray-500" /> // Hide password icon
+                  ) : (
+                    <Eye className="h-5 w-5 text-gray-500" /> // Show password icon
+                  )}
+                </button>
+              </div>
             </div>
 
             <div className="text-right">
@@ -93,7 +159,22 @@ const Login = () => {
               </a>
             </div>
 
-            <Button type="submit" className="w-full">
+            {/* Terms and Conditions Checkbox */}
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="terms"
+                checked={agreeToTerms}
+                onCheckedChange={(checked) => setAgreeToTerms(!!checked)}
+              />
+              <label htmlFor="terms" className="text-sm text-gray-600">
+                I agree to the{" "}
+                <a href="/terms-and-conditions" className="text-blue-600 hover:underline">
+                  Terms and Conditions
+                </a>
+              </label>
+            </div>
+
+            <Button type="submit" className="w-full" disabled={!agreeToTerms}>
               Sign in
             </Button>
           </form>
