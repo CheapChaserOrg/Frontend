@@ -10,7 +10,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative flex items-center justify-center">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
@@ -22,7 +22,7 @@ const Index = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-8">
+      <div className="relative z-10 container mx-auto px-4 ">
         <h1 className="text-4xl font-bold text-center mb-8 text-white">Welcome to Cheap Chaser</h1>
         
         <div className="flex flex-col gap-6 max-w-6xl mx-auto">
@@ -41,28 +41,6 @@ const Index = () => {
                 <Button
                   onClick={() => handleNavigation(item.path)}
                   className="w-full bg-[#2a9d8f] hover:bg-[#2a9d8f] text-white transition-colors"
-                >
-                  {item.title}
-                </Button>
-              </div>
-            ))}
-          </div>
-
-          {/* Second Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { title: "Leave Feedback", path: "/feedback", description: "Share your experience" },
-              { title: "View Ratings", path: "/ratings", description: "See what others are saying" }
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-opacity-20 transition-all duration-300"
-              >
-                <h2 className="text-2xl font-semibold mb-3">{item.title}</h2>
-                <p className="mb-4 text-gray-200">{item.description}</p>
-                <Button
-                  onClick={() => handleNavigation(item.path)}
-                  className="w-full bg-[#2a9d8f] hover:bg-[#2a9d8f]/80 text-white transition-colors"
                 >
                   {item.title}
                 </Button>
