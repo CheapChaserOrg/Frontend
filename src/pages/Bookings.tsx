@@ -3,17 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ActivityBookingForm from "@/components/booking/ActivityBookingForm";
 import HotelBookingForm from "@/components/booking/HotelBookingForm";
 import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 
 const Bookings = () => {
   const [activeTab, setActiveTab] = useState("activity");
   const { toast } = useToast();
-  const navigate = useNavigate();
-
-  const handleNavigation = (path: string) => {
-    navigate(path);
-  };
 
   return (
     <div className="min-h-screen relative">
@@ -49,16 +42,6 @@ const Bookings = () => {
             <HotelBookingForm />
           </TabsContent>
         </Tabs>
-
-        {/* Navigation Button */}
-        <div className="flex justify-center mt-8">
-          <Button
-            onClick={() => handleNavigation("/booking-history")}
-            className="bg-[#2a9d8f] hover:bg-[#2a9d8f] text-white transition-colors"
-          >
-            View Booking History
-          </Button>
-        </div>
       </div>
     </div>
   );

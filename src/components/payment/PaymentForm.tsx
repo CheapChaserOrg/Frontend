@@ -107,7 +107,7 @@ const PaymentForm = ({ amount, onSuccess, onCancel, bookingType }: PaymentFormPr
         </div>
 
         <div className="flex gap-4 mt-6">
-          <Button
+        <Button
             type="button"
             variant="outline"
             className="flex-1"
@@ -117,7 +117,7 @@ const PaymentForm = ({ amount, onSuccess, onCancel, bookingType }: PaymentFormPr
           </Button>
           <Button
             type="submit"
-            className="flex-1 bg-[#2a9d8f] hover:bg-[#2a9d8f]/80 text-white"
+            className="flex-1 bg-[#61dafbaa] hover:bg-[#61dafb]"
             disabled={isProcessing}
           >
             {isProcessing ? (

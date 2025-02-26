@@ -98,7 +98,7 @@ const HotelBookingForm = () => {
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
-                    <Button
+                      <Button
                         variant={"outline"}
                         className={cn(
                           "w-full pl-3 text-left font-normal",
@@ -218,7 +218,7 @@ const HotelBookingForm = () => {
           )}
         />
 
-        <Button type="submit" className="w-full bg-[#2a9d8f] hover:bg-[#2a9d8f]/80 text-white" disabled={isLoading}>
+        <Button type="submit" className="w-full bg-[#61dafbaa] hover:bg-[#61dafb]" disabled={isLoading}>
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
