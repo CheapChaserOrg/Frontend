@@ -94,12 +94,12 @@ const Contact = () => {
                 <ContactItem 
                   icon={<Mail className="text-primary" />}
                   title="Email"
-                  detail="info@CheapChaser.com"
+                  detail="cheapchaser001@gmail.com"
                 />
                 <ContactItem 
                   icon={<Phone className="text-primary" />}
                   title="Phone"
-                  detail="+94 11 234 5678"
+                  detail="+94 11 709 472"
                 />
                 <ContactItem 
                   icon={<MapPin className="text-primary" />}
@@ -109,7 +109,7 @@ const Contact = () => {
                 <ContactItem 
                   icon={<MessageSquare className="text-primary" />}
                   title="Social Media"
-                  detail="@CheapChaser"
+                  detail="CheapChaser.travel"
                 />
               </div>
 
