@@ -1,2 +1,16 @@
-# Frontend
-Frontend code base for SDGP SE90
+#CheapChaser profile management for users
+
+#User profiles
+ - Guide
+ - providers
+ - travellers
+
+## What technologies are used for this project?
+
+This project is built with .
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
